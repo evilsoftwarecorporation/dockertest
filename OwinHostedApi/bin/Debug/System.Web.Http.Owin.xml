@@ -1,0 +1,720 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Web.Http.Owin</name>
+    </assembly>
+    <members>
+        <member name="T:System.Collections.Generic.CollectionExtensions">
+            <summary>
+            Helper extension methods for fast use of collections.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AppendAndReallocate``1(``0[],``0)">
+            <summary>
+            Return a new array with the value added to the end. Slow and best suited to long lived arrays with few writes relative to reads.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AsArray``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Return the enumerable as an Array, copying if required. Optimized for common case where it is an Array. 
+            Avoid mutating the return value.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AsCollection``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Return the enumerable as a Collection of T, copying if required. Optimized for the common case where it is 
+            a Collection of T and avoiding a copy if it implements IList of T. Avoid mutating the return value.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AsIList``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Return the enumerable as a IList of T, copying if required. Avoid mutating the return value.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AsList``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Return the enumerable as a List of T, copying if required. Optimized for common case where it is an List of T 
+            or a ListWrapperCollection of T. Avoid mutating the return value.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.RemoveFrom``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Remove values from the list starting at the index start.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.SingleDefaultOrError``2(System.Collections.Generic.IList{``0},System.Action{``1},``1)">
+            <summary>
+            Return the only value from list, the type's default value if empty, or call the errorAction for 2 or more.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.SingleOfTypeDefaultOrError``3(System.Collections.Generic.IList{``0},System.Action{``2},``2)">
+            <summary>
+            Returns a single value in list matching type TMatch if there is only one, null if there are none of type TMatch or calls the
+            errorAction with errorArg1 if there is more than one.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.ToArrayWithoutNulls``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Convert an ICollection to an array, removing null values. Fast path for case where there are no null values.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.ToDictionaryFast``2(``1[],System.Func{``1,``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Convert the array to a Dictionary using the keySelector to extract keys from values and the specified comparer. Optimized for array input.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.ToDictionaryFast``2(System.Collections.Generic.IList{``1},System.Func{``1,``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Convert the list to a Dictionary using the keySelector to extract keys from values and the specified comparer. Optimized for IList of T input with fast path for array.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.ToDictionaryFast``2(System.Collections.Generic.IEnumerable{``1},System.Func{``1,``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Convert the enumerable to a Dictionary using the keySelector to extract keys from values and the specified comparer. Fast paths for array and IList of T.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.ToDictionaryFastNoCheck``2(System.Collections.Generic.IList{``1},System.Func{``1,``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Convert the list to a Dictionary using the keySelector to extract keys from values and the specified comparer. Optimized for IList of T input. No checking for other types.
+            </summary>
+        </member>
+        <member name="T:System.Collections.Generic.DictionaryExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.RemoveFromDictionary``2(System.Collections.Generic.IDictionary{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},System.Boolean})">
+            <summary>
+            Remove entries from dictionary that match the removeCondition.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.RemoveFromDictionary``3(System.Collections.Generic.IDictionary{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},``2,System.Boolean},``2)">
+            <summary>
+            Remove entries from dictionary that match the removeCondition.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.TryGetValue``1(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,``0@)">
+            <summary>
+            Gets the value of <typeparamref name="T"/> associated with the specified key or <c>default</c> value if
+            either the key is not present or the value is not of type <typeparamref name="T"/>. 
+            </summary>
+            <typeparam name="T">The type of the value associated with the specified key.</typeparam>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IDictionary`2"/> instance where <c>TValue</c> is <c>object</c>.</param>
+            <param name="key">The key whose value to get.</param>
+            <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter.</param>
+            <returns><c>true</c> if key was found, value is non-null, and value is of type <typeparamref name="T"/>; otherwise false.</returns>
+        </member>
+        <member name="T:System.Collections.ObjectModel.ListWrapperCollection`1">
+            <summary>
+            A class that inherits from Collection of T but also exposes its underlying data as List of T for performance.
+            </summary>
+        </member>
+        <member name="T:System.Web.Http.Error">
+            <summary>
+            Utility class for creating and unwrapping <see cref="T:System.Exception"/> instances.
+            </summary>
+        </member>
+        <member name="M:System.Web.Http.Error.Format(System.String,System.Object[])">
+            <summary>
+            Formats the specified resource string using <see cref="M:CultureInfo.CurrentCulture"/>.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.Argument(System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with the provided properties.
+            </summary>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.Argument(System.String,System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with the provided properties.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentUriNotHttpOrHttpsScheme(System.String,System.Uri)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with a message saying that the argument must be an "http" or "https" URI.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="actualValue">The value of the argument that causes this exception.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentUriNotAbsolute(System.String,System.Uri)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with a message saying that the argument must be an absolute URI.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="actualValue">The value of the argument that causes this exception.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentUriHasQueryOrFragment(System.String,System.Uri)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with a message saying that the argument must be an absolute URI 
+            without a query or fragment identifier and then logs it with <see cref="F:TraceLevel.Error"/>.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="actualValue">The value of the argument that causes this exception.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.PropertyNull">
+            <summary>
+            Creates an <see cref="T:System.ArgumentNullException"/> with the provided properties.
+            </summary>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentNull(System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentNullException"/> with the provided properties.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentNull(System.String,System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.ArgumentNullException"/> with the provided properties.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentNullOrEmpty(System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with a default message.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentOutOfRange(System.String,System.Object,System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.ArgumentOutOfRangeException"/> with the provided properties.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="actualValue">The value of the argument that causes this exception.</param>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentMustBeGreaterThanOrEqualTo(System.String,System.Object,System.Object)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentOutOfRangeException"/> with a message saying that the argument must be greater than or equal to <paramref name="minValue"/>.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="actualValue">The value of the argument that causes this exception.</param>
+            <param name="minValue">The minimum size of the argument.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ArgumentMustBeLessThanOrEqualTo(System.String,System.Object,System.Object)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentOutOfRangeException"/> with a message saying that the argument must be less than or equal to <paramref name="maxValue"/>.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="actualValue">The value of the argument that causes this exception.</param>
+            <param name="maxValue">The maximum size of the argument.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.KeyNotFound">
+            <summary>
+            Creates an <see cref="T:System.Collections.Generic.KeyNotFoundException"/> with a message saying that the key was not found.
+            </summary>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.KeyNotFound(System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.Collections.Generic.KeyNotFoundException"/> with a message saying that the key was not found.
+            </summary>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.ObjectDisposed(System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.ObjectDisposedException"/> initialized according to guidelines.
+            </summary>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.OperationCanceled">
+            <summary>
+            Creates an <see cref="T:System.OperationCanceledException"/> initialized with the provided parameters.
+            </summary>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.OperationCanceled(System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.OperationCanceledException"/> initialized with the provided parameters.
+            </summary>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.InvalidEnumArgument(System.String,System.Int32,System.Type)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> for an invalid enum argument.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <param name="invalidValue">The value of the argument that failed.</param>
+            <param name="enumClass">A <see cref="T:System.Type"/> that represents the enumeration class with the valid values.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.InvalidOperation(System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.InvalidOperation(System.Exception,System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="innerException">Inner exception</param>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:System.Web.Http.Error.NotSupported(System.String,System.Object[])">
+            <summary>
+            Creates an <see cref="T:System.NotSupportedException"/>.
+            </summary>
+            <param name="messageFormat">A composite format string explaining the reason for the exception.</param>
+            <param name="messageArgs">An object array that contains zero or more objects to format.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="T:System.Web.Http.NonOwnedStream">
+            <summary>Represents a stream that replaces another stream to prevent actually closing that stream.</summary>
+            <remarks>
+            This class uses the Decorator [GoF] pattern; it forwards all calls except those related to Dispose and Close.
+            </remarks>
+        </member>
+        <member name="T:System.Web.Http.Owin.OwinExceptionCatchBlocks">
+            <summary>Provides the catch blocks used within this assembly.</summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterBufferContent">
+            <summary>Gets the catch block in <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/>.BufferContent.</summary>
+            <remarks>
+            This catch block handles exceptions when writing the <see cref="T:System.Net.Http.HttpContent"/> under an
+            <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector"/> that buffers.
+            </remarks>
+        </member>
+        <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterBufferError">
+            <summary>Gets the catch block in <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/>.BufferError.</summary>
+            <remarks>
+            This catch block handles exceptions when writing the <see cref="T:System.Net.Http.HttpContent"/> of the error response itself
+            (after <see cref="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterBufferContent"/>).
+            </remarks>
+        </member>
+        <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterComputeContentLength">
+            <summary>Gets the catch block in <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/>.ComputeContentLength.</summary>
+            <remarks>
+            This catch block handles exceptions when calling <see cref="M:System.Net.Http.HttpContent.TryComputeLength(System.Int64@)"/>.
+            </remarks>
+        </member>
+        <member name="P:System.Web.Http.Owin.OwinExceptionCatchBlocks.HttpMessageHandlerAdapterStreamContent">
+            <summary>Gets the catch block in <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/>.StreamContent.</summary>
+            <remarks>
+            This catch block handles exceptions when writing the <see cref="T:System.Net.Http.HttpContent"/> under an
+            <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector"/> that does not buffer.
+            </remarks>
+        </member>
+        <member name="T:System.Web.Http.Owin.HttpMessageHandlerOptions">
+            <summary>Represents the options for configuring an <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/>.</summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.MessageHandler">
+            <summary>
+            Gets or sets the <see cref="T:System.Net.Http.HttpMessageHandler"/> to submit requests to.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.BufferPolicySelector">
+            <summary>
+            Gets or sets the <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector"/> that determines whether or not to buffer requests
+            and responses.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.ExceptionLogger">
+            <summary>Gets or sets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionLogger"/> to use to log unhandled exceptions.</summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.ExceptionHandler">
+            <summary>Gets or sets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionHandler"/> to use to process unhandled exceptions.</summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerOptions.AppDisposing">
+            <summary>
+            Gets or sets the <see cref="T:System.Threading.CancellationToken"/> that triggers cleanup of the
+            <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/>.
+            </summary>
+        </member>
+        <member name="T:System.Web.Http.Owin.OwinBufferPolicySelector">
+            <summary>
+            Provides the default implementation of <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector"/> used by the OWIN Web API adapter.
+            </summary>
+        </member>
+        <member name="M:System.Web.Http.Owin.OwinBufferPolicySelector.UseBufferedInputStream(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Web.Http.Owin.OwinBufferPolicySelector.UseBufferedOutputStream(System.Net.Http.HttpResponseMessage)">
+            <inheritdoc />
+        </member>
+        <member name="T:System.Web.Http.Owin.OwinConstants">
+            <summary>
+            Standard keys and values for use within the OWIN interfaces.
+            </summary>
+        </member>
+        <member name="T:System.Web.Http.Owin.HttpMessageHandlerAdapter">
+            <summary>
+            Represents an OWIN component that submits requests to an <see cref="T:System.Net.Http.HttpMessageHandler"/> when invoked.
+            </summary>
+        </member>
+        <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.#ctor(Microsoft.Owin.OwinMiddleware,System.Web.Http.Owin.HttpMessageHandlerOptions)">
+            <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/> class.</summary>
+            <param name="next">The next component in the pipeline.</param>
+            <param name="options">The options to configure this adapter.</param>
+        </member>
+        <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.#ctor(Microsoft.Owin.OwinMiddleware,System.Net.Http.HttpMessageHandler,System.Web.Http.Hosting.IHostBufferPolicySelector)">
+            <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Owin.HttpMessageHandlerAdapter"/> class.</summary>
+            <param name="next">The next component in the pipeline.</param>
+            <param name="messageHandler">The <see cref="T:System.Net.Http.HttpMessageHandler"/> to submit requests to.</param>
+            <param name="bufferPolicySelector">
+            The <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector"/> that determines whether or not to buffer requests and
+            responses.
+            </param>
+            <remarks>
+            This constructor is retained for backwards compatibility. The constructor taking
+            <see cref="T:System.Web.Http.Owin.HttpMessageHandlerOptions"/> should be used instead.
+            </remarks>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.MessageHandler">
+            <summary>Gets the <see cref="T:System.Net.Http.HttpMessageHandler"/> to submit requests to.</summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.BufferPolicySelector">
+            <summary>
+            Gets the <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector"/> that determines whether or not to buffer requests and
+            responses.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.ExceptionLogger">
+            <summary>Gets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionLogger"/> to use to log unhandled exceptions.</summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.ExceptionHandler">
+            <summary>Gets the <see cref="T:System.Web.Http.ExceptionHandling.IExceptionHandler"/> to use to process unhandled exceptions.</summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.AppDisposing">
+            <summary>Gets the <see cref="T:System.Threading.CancellationToken"/> that triggers cleanup of this component.</summary>
+        </member>
+        <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.Invoke(Microsoft.Owin.IOwinContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and optionally managed resources.
+            </summary>
+            <param name="disposing">
+            <see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release
+            only unmanaged resources.
+            </param>
+            <remarks>
+            This class implements <see cref="T:System.IDisposable"/> for legacy reasons. New callers should instead provide a
+            cancellation token via <see cref="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.AppDisposing"/> using the constructor that takes
+            <see cref="T:System.Web.Http.Owin.HttpMessageHandlerOptions"/>.
+            </remarks>
+        </member>
+        <member name="M:System.Web.Http.Owin.HttpMessageHandlerAdapter.Dispose">
+            <inheritdoc />
+            <remarks>
+            This class implements <see cref="T:System.IDisposable"/> for legacy reasons. New callers should instead provide a
+            cancellation token via <see cref="P:System.Web.Http.Owin.HttpMessageHandlerAdapter.AppDisposing"/> using the constructor that takes
+            <see cref="T:System.Web.Http.Owin.HttpMessageHandlerOptions"/>.
+            </remarks>
+        </member>
+        <member name="T:System.Web.Http.Owin.PassiveAuthenticationMessageHandler">
+            <summary>Represents a message handler that treats all OWIN authentication middleware as passive.</summary>
+            <remarks>
+            This message handler sets the current principal to anonymous upon entry and disables the default OWIN
+            authentication middleware challenges. As a result, any default authentication performed by the host is ignored.
+            The subsequent pipeline, including <see cref="T:System.Web.Http.Filters.IAuthenticationFilter"/>s, is then the exclusive authority for
+            authentication.
+            </remarks>
+        </member>
+        <member name="M:System.Web.Http.Owin.PassiveAuthenticationMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:System.Web.Http.Owin.Properties.OwinResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.HttpAuthenticationChallengeContext_RequestMustNotBeNull">
+            <summary>
+              Looks up a localized string similar to HttpAuthenticationChallengeContext.Request must not be null..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.HttpAuthenticationContext_RequestMustNotBeNull">
+            <summary>
+              Looks up a localized string similar to HttpAuthenticationContext.Request must not be null..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.IAuthenticationManagerNotAvailable">
+            <summary>
+              Looks up a localized string similar to No OWIN authentication manager is associated with the request..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.OwinContext_NullRequest">
+            <summary>
+              Looks up a localized string similar to The OWIN context&apos;s Request property must not be null..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.OwinContext_NullResponse">
+            <summary>
+              Looks up a localized string similar to The OWIN context&apos;s Response property must not be null..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.Request_RequestContextMustNotBeNull">
+            <summary>
+              Looks up a localized string similar to The request must have a request context..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.SendAsync_ReturnedNull">
+            <summary>
+              Looks up a localized string similar to The message handler did not return a response message..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Owin.Properties.OwinResources.TypePropertyMustNotBeNull">
+            <summary>
+              Looks up a localized string similar to {0}.{1} must not be null..
+            </summary>
+        </member>
+        <member name="T:System.Web.Http.HostAuthenticationAttribute">
+            <summary>Represents an authentication attribute that authenticates via OWIN middleware.</summary>
+        </member>
+        <member name="M:System.Web.Http.HostAuthenticationAttribute.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HostAuthenticationAttribute"/> class.</summary>
+            <param name="authenticationType">The authentication type of the OWIN middleware to use.</param>
+        </member>
+        <member name="P:System.Web.Http.HostAuthenticationAttribute.AllowMultiple">
+            <inheritdoc />
+        </member>
+        <member name="P:System.Web.Http.HostAuthenticationAttribute.AuthenticationType">
+            <summary>Gets the authentication type of the OWIN middleware to use.</summary>
+        </member>
+        <member name="M:System.Web.Http.HostAuthenticationAttribute.AuthenticateAsync(System.Web.Http.Filters.HttpAuthenticationContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Web.Http.HostAuthenticationAttribute.ChallengeAsync(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:System.Web.Http.OwinHttpConfigurationExtensions">
+            <summary>Provides extension methods for the <see cref="T:System.Web.Http.HttpConfiguration"/> class.</summary>
+        </member>
+        <member name="M:System.Web.Http.OwinHttpConfigurationExtensions.SuppressDefaultHostAuthentication(System.Web.Http.HttpConfiguration)">
+            <summary>Enables suppression of the host's default authentication.</summary>
+            <param name="configuration">The server configuration.</param>
+            <remarks>
+            When the host's default authentication is suppressed, the current principal is set to anonymous upon
+            entering the <see cref="T:System.Web.Http.HttpServer"/>'s first message handler. As a result, any default authentication
+            performed by the host is ignored. The remaining pipeline within the <see cref="T:System.Web.Http.HttpServer"/>, including
+            <see cref="T:System.Web.Http.Filters.IAuthenticationFilter"/>s, is then the exclusive authority for authentication.
+            </remarks>
+        </member>
+        <member name="T:System.Web.Http.HostAuthenticationFilter">
+            <summary>Represents an authentication filter that authenticates via OWIN middleware.</summary>
+        </member>
+        <member name="M:System.Web.Http.HostAuthenticationFilter.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HostAuthenticationFilter"/> class.</summary>
+            <param name="authenticationType">The authentication type of the OWIN middleware to use.</param>
+        </member>
+        <member name="P:System.Web.Http.HostAuthenticationFilter.AuthenticationType">
+            <summary>Gets the authentication type of the OWIN middleware to use.</summary>
+        </member>
+        <member name="M:System.Web.Http.HostAuthenticationFilter.AuthenticateAsync(System.Web.Http.Filters.HttpAuthenticationContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:System.Web.Http.HostAuthenticationFilter.ChallengeAsync(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="P:System.Web.Http.HostAuthenticationFilter.AllowMultiple">
+            <inheritdoc />
+        </member>
+        <member name="T:System.Web.Http.Properties.CommonWebApiResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.ArgumentInvalidAbsoluteUri">
+            <summary>
+              Looks up a localized string similar to Relative URI values are not supported: &apos;{0}&apos;. The URI must be absolute..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.ArgumentInvalidHttpUriScheme">
+            <summary>
+              Looks up a localized string similar to Unsupported URI scheme: &apos;{0}&apos;. The URI scheme must be either &apos;{1}&apos; or &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.ArgumentMustBeGreaterThanOrEqualTo">
+            <summary>
+              Looks up a localized string similar to Value must be greater than or equal to {0}..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.ArgumentMustBeLessThanOrEqualTo">
+            <summary>
+              Looks up a localized string similar to Value must be less than or equal to {0}..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.ArgumentNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to The argument &apos;{0}&apos; is null or empty..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.ArgumentUriHasQueryOrFragment">
+            <summary>
+              Looks up a localized string similar to URI must not contain a query component or a fragment identifier..
+            </summary>
+        </member>
+        <member name="P:System.Web.Http.Properties.CommonWebApiResources.InvalidEnumArgument">
+            <summary>
+              Looks up a localized string similar to The value of argument &apos;{0}&apos; ({1}) is invalid for Enum type &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="T:System.Threading.Tasks.TaskHelpers">
+            <summary>
+            Helpers for safely using Task libraries. 
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpers.Canceled">
+            <summary>
+            Returns a canceled Task. The task is completed, IsCanceled = True, IsFaulted = False.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpers.Canceled``1">
+            <summary>
+            Returns a canceled Task of the given type. The task is completed, IsCanceled = True, IsFaulted = False.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpers.Completed">
+            <summary>
+            Returns a completed task that has no result. 
+            </summary>        
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpers.FromError(System.Exception)">
+            <summary>
+            Returns an error task. The task is Completed, IsCanceled = False, IsFaulted = True
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpers.FromError``1(System.Exception)">
+            <summary>
+            Returns an error task of the given type. The task is Completed, IsCanceled = False, IsFaulted = True
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="T:System.Threading.Tasks.TaskHelpers.AsyncVoid">
+            <summary>
+            Used as the T in a "conversion" of a Task into a Task{T}
+            </summary>
+        </member>
+        <member name="T:System.Threading.Tasks.TaskHelpers.CancelCache`1">
+            <summary>
+            This class is a convenient cache for per-type cancelled tasks
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpersExtensions.CastToObject(System.Threading.Tasks.Task)">
+            <summary>
+            Cast Task to Task of object
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpersExtensions.CastToObject``1(System.Threading.Tasks.Task{``0})">
+            <summary>
+            Cast Task of T to Task of object
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpersExtensions.ThrowIfFaulted(System.Threading.Tasks.Task)">
+            <summary>
+            Throws the first faulting exception for a task which is faulted. It preserves the original stack trace when
+            throwing the exception. Note: It is the caller's responsibility not to pass incomplete tasks to this
+            method, because it does degenerate into a call to the equivalent of .Wait() on the task when it hasn't yet
+            completed.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskHelpersExtensions.TryGetResult``1(System.Threading.Tasks.Task{``0},``0@)">
+            <summary>
+            Attempts to get the result value for the given task. If the task ran to completion, then
+            it will return true and set the result value; otherwise, it will return false.
+            </summary>
+        </member>
+        <member name="T:System.Net.Http.OwinHttpRequestMessageExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:System.Net.Http.HttpRequestMessage"/> class.
+            </summary>
+        </member>
+        <member name="M:System.Net.Http.OwinHttpRequestMessageExtensions.GetOwinContext(System.Net.Http.HttpRequestMessage)">
+            <summary>Gets the OWIN context for the specified request.</summary>
+            <param name="request">The HTTP request message.</param>
+            <returns>
+            The OWIN environment for the specified context, if available; otherwise <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:System.Net.Http.OwinHttpRequestMessageExtensions.SetOwinContext(System.Net.Http.HttpRequestMessage,Microsoft.Owin.IOwinContext)">
+            <summary>Sets the OWIN context for the specified request.</summary>
+            <param name="request">The HTTP request message.</param>
+            <param name="context">The OWIN context to set.</param>
+        </member>
+        <member name="M:System.Net.Http.OwinHttpRequestMessageExtensions.GetOwinEnvironment(System.Net.Http.HttpRequestMessage)">
+            <summary>Gets the OWIN environment for the specified request.</summary>
+            <param name="request">The HTTP request message.</param>
+            <returns>
+            The OWIN environment for the specified request, if available; otherwise <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:System.Net.Http.OwinHttpRequestMessageExtensions.SetOwinEnvironment(System.Net.Http.HttpRequestMessage,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>Sets the OWIN environment for the specified request.</summary>
+            <param name="request">The HTTP request message.</param>
+            <param name="environment">The OWIN environment to set.</param>
+        </member>
+        <member name="T:Owin.WebApiAppBuilderExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:Owin.IAppBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:Owin.WebApiAppBuilderExtensions.UseWebApi(Owin.IAppBuilder,System.Web.Http.HttpConfiguration)">
+            <summary>Adds a component to the OWIN pipeline for running a Web API endpoint.</summary>
+            <param name="builder">The application builder.</param>
+            <param name="configuration">The <see cref="T:System.Web.Http.HttpConfiguration"/> used to configure the endpoint.</param>
+            <returns>The application builder.</returns>
+        </member>
+        <member name="M:Owin.WebApiAppBuilderExtensions.UseWebApi(Owin.IAppBuilder,System.Web.Http.HttpServer)">
+            <summary>Adds a component to the OWIN pipeline for running a Web API endpoint.</summary>
+            <param name="builder">The application builder.</param>
+            <param name="httpServer">The http server.</param>
+            <returns>The application builder.</returns>
+        </member>
+    </members>
+</doc>
